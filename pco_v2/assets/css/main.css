@@ -589,6 +589,39 @@ textarea { resize: vertical; min-height: 90px; }
 .pco-hero p  { font-size: 1.05rem; opacity: 0.82; max-width: 540px; line-height: 1.7; }
 .pco-hero__actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.25rem; }
 
+/* Homepage interactive finder */
+.pco-switch {
+  display: inline-flex;
+  border: 1px solid var(--pco-grey-200);
+  border-radius: var(--pco-r-pill);
+  background: var(--pco-white);
+  overflow: hidden;
+  box-shadow: var(--pco-shadow-xs);
+}
+.pco-switch button {
+  border: 0;
+  background: transparent;
+  padding: 0.55rem 1.2rem;
+  font-size: .84rem;
+  font-weight: 600;
+  color: var(--pco-grey-700);
+  cursor: pointer;
+}
+.pco-switch button.active { background: var(--pco-purple); color: #fff; }
+.pco-finder-card {
+  display: block;
+  background: #fff;
+  border: 1px solid var(--pco-grey-200);
+  border-radius: var(--pco-r-lg);
+  padding: 1rem;
+  height: 100%;
+  transition: all var(--pco-t);
+}
+.pco-finder-card:hover { transform: translateY(-2px); box-shadow: var(--pco-shadow-sm); border-color: var(--pco-lavender); }
+.pco-finder-card h3 { font-family: var(--pco-font-body); font-size: 1rem; font-weight: 700; margin-bottom: .35rem; }
+.pco-finder-card p { color: var(--pco-grey-500); font-size: .84rem; line-height: 1.5; margin-bottom: .75rem; }
+.pco-finder-card span { font-size: .78rem; font-weight: 700; color: var(--pco-purple); }
+
 /* Gender split panels */
 .pco-split { display: grid; grid-template-columns: 1fr 1fr; }
 @media (max-width: 640px) { .pco-split { grid-template-columns: 1fr; } }

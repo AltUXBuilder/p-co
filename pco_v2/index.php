@@ -5,6 +5,7 @@ $active_nav = 'home';
 
 $men_conds    = Database::fetchAll("SELECT * FROM conditions WHERE (gender='male' OR gender='all')   AND is_active=1 ORDER BY sort_order LIMIT 3");
 $women_conds  = Database::fetchAll("SELECT * FROM conditions WHERE (gender='female' OR gender='all') AND is_active=1 ORDER BY sort_order LIMIT 4");
+$all_conds    = Database::fetchAll("SELECT name, slug, gender, description FROM conditions WHERE is_active=1 ORDER BY sort_order");
 
 $icon_map = ['weight-scale'=>'weight-scale','heart-pulse'=>'heart-pulse','cut'=>'scissors','leaf'=>'leaf','sparkles'=>'wand-sparkles','scissors'=>'scissors'];
 
@@ -74,6 +75,40 @@ include __DIR__ . '/includes/header.php';
     </div>
     <div class="text-center" style="margin-top:2.5rem;">
       <a href="<?= APP_URL ?>/pages/auth/register.php" class="pco-btn pco-btn--primary pco-btn--lg">Start your consultation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── INTERACTIVE TREATMENT FINDER ───────────────────────────── -->
+<section style="padding:4.5rem 0;background:var(--pco-grey-50);border-top:1px solid var(--pco-grey-200);border-bottom:1px solid var(--pco-grey-200);">
+  <div class="grid-container">
+    <div class="text-center" style="margin-bottom:2rem;">
+      <p style="font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pco-purple);margin-bottom:.6rem;">Find Your Pathway</p>
+      <h2 style="font-size:2rem;margin-bottom:.65rem;">Choose your treatment area</h2>
+      <p style="color:var(--pco-grey-500);max-width:560px;margin:0 auto;">Switch between men’s and women’s pathways. Weight loss appears in both because it uses one shared clinical journey.</p>
+    </div>
+
+    <div class="pco-switch" id="pcoFinderSwitch">
+      <button class="active" data-gender="male"><i class="fa-solid fa-mars"></i> Men</button>
+      <button data-gender="female"><i class="fa-solid fa-venus"></i> Women</button>
+    </div>
+
+    <div class="grid-x grid-margin-x" id="pcoFinderGrid" style="margin-top:1.25rem;">
+      <?php foreach ($all_conds as $c):
+        $showForMen = in_array($c['gender'], ['male','all'], true);
+        $showForWomen = in_array($c['gender'], ['female','all'], true);
+      ?>
+      <div class="cell large-3 medium-6 small-12 pco-finder-card-wrap"
+           data-male="<?= $showForMen ? '1' : '0' ?>"
+           data-female="<?= $showForWomen ? '1' : '0' ?>"
+           style="margin-bottom:1rem;">
+        <a class="pco-finder-card" href="<?= APP_URL ?>/pages/condition.php?slug=<?= e($c['slug']) ?>">
+          <h3><?= e($c['name']) ?></h3>
+          <p><?= e($c['description']) ?></p>
+          <span>Start questionnaire <i class="fa-solid fa-arrow-right fa-xs"></i></span>
+        </a>
+      </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>
@@ -151,5 +186,25 @@ include __DIR__ . '/includes/header.php';
     </p>
   </div>
 </section>
+
+<?php
+$extra_scripts = '<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const wrap = document.getElementById("pcoFinderSwitch");
+  if (!wrap) return;
+  const buttons = wrap.querySelectorAll("button[data-gender]");
+  const cards = document.querySelectorAll(".pco-finder-card-wrap");
+  const setGender = (gender) => {
+    buttons.forEach(btn => btn.classList.toggle("active", btn.dataset.gender === gender));
+    cards.forEach(card => {
+      const visible = card.dataset[gender] === "1";
+      card.style.display = visible ? "" : "none";
+    });
+  };
+  buttons.forEach(btn => btn.addEventListener("click", () => setGender(btn.dataset.gender)));
+  setGender("male");
+});
+</script>';
+?>
 
 <?php include __DIR__ . '/includes/footer.php'; ?>
