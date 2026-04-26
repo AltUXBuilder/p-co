@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['_submit'])) {
 }
 
 // Stub conditions redirect
-$stubConditions = ['hair-loss-men','weight-loss-women','digestive-health','hair-loss-women','skin-health'];
+$stubConditions = ['hair-loss-men','digestive-health','hair-loss-women','skin-health'];
 $isStub = in_array($slug, $stubConditions);
 
 $page_title = 'Consultation — '.$condition['name'];

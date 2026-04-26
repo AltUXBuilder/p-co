@@ -3,8 +3,8 @@ require_once __DIR__ . '/includes/bootstrap.php';
 $page_title = 'Online Prescription Pharmacy';
 $active_nav = 'home';
 
-$men_conds    = Database::fetchAll("SELECT * FROM conditions WHERE gender='male'   AND is_active=1 ORDER BY sort_order LIMIT 3");
-$women_conds  = Database::fetchAll("SELECT * FROM conditions WHERE gender='female' AND is_active=1 ORDER BY sort_order LIMIT 3");
+$men_conds    = Database::fetchAll("SELECT * FROM conditions WHERE (gender='male' OR gender='all')   AND is_active=1 ORDER BY sort_order LIMIT 3");
+$women_conds  = Database::fetchAll("SELECT * FROM conditions WHERE (gender='female' OR gender='all') AND is_active=1 ORDER BY sort_order LIMIT 4");
 
 $icon_map = ['weight-scale'=>'weight-scale','heart-pulse'=>'heart-pulse','cut'=>'scissors','leaf'=>'leaf','sparkles'=>'wand-sparkles','scissors'=>'scissors'];
 
@@ -84,7 +84,7 @@ include __DIR__ . '/includes/header.php';
     <div style="position:relative;z-index:1;">
       <div class="pco-split__label">For Him</div>
       <h2>Men's Health</h2>
-      <p>Weight loss, erectile dysfunction, hair loss and more — treated with discretion and clinical expertise.</p>
+      <p>Weight loss, erectile dysfunction and hair loss support — treated with discretion and clinical expertise.</p>
       <div class="pco-split__tags">
         <?php foreach ($men_conds as $c): ?>
         <span class="pco-split__tag"><?= e($c['name']) ?></span>
@@ -100,7 +100,7 @@ include __DIR__ . '/includes/header.php';
     <div style="position:relative;z-index:1;">
       <div class="pco-split__label">For Her</div>
       <h2>Women's Health</h2>
-      <p>Weight management, skin health, hair care and digestive wellness — evidence-based prescriptions tailored to you.</p>
+      <p>Weight loss, skin health, hair loss and digestive wellness — evidence-based prescriptions tailored to you.</p>
       <div class="pco-split__tags">
         <?php foreach ($women_conds as $c): ?>
         <span class="pco-split__tag"><?= e($c['name']) ?></span>

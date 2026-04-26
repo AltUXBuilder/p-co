@@ -130,6 +130,11 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.01em;
   line-height: 1;
 }
+.pco-nav__logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
 .pco-nav__logo-dot {
   font-family: var(--pco-font-serif);
   font-size: 1.55rem;
