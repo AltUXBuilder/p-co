@@ -33,7 +33,11 @@ $dash_url = match($role) {
 
       <!-- Logo -->
       <a href="<?= APP_URL ?>/" class="pco-nav__logo">
-        <span class="pco-nav__logo-text">P&amp;Co</span><span class="pco-nav__logo-dot">.</span>
+        <?php if (file_exists(APP_PATH . '/assets/img/logo.png')): ?>
+          <img src="<?= APP_URL ?>/assets/img/logo.png" alt="Prescribe and Co logo" class="pco-nav__logo-img">
+        <?php else: ?>
+          <span class="pco-nav__logo-text">Prescribe &amp; Co</span>
+        <?php endif; ?>
       </a>
 
       <!-- Public nav links -->
@@ -66,7 +70,7 @@ $dash_url = match($role) {
               <i class="fa-solid fa-chevron-down fa-xs"></i>
             </button>
             <ul class="pco-dropdown" id="userDropdown">
-              <li><a href="<?= APP_URL ?>/pages/patient/profile.php"><i class="fa-solid fa-user fa-fw"></i> My Profile</a></li>
+              <li><a href="<?= APP_URL ?>/pages/patient/account.php"><i class="fa-solid fa-id-card fa-fw"></i> My Account</a></li>
               <?php if ($role === 'patient'): ?>
               <li><a href="<?= APP_URL ?>/pages/patient/consultations.php"><i class="fa-solid fa-clipboard-list fa-fw"></i> Consultations</a></li>
               <li><a href="<?= APP_URL ?>/pages/patient/prescriptions.php"><i class="fa-solid fa-file-prescription fa-fw"></i> Prescriptions</a></li>
@@ -101,7 +105,7 @@ $dash_url = match($role) {
       <?php endif; ?>
       <?php if (is_logged_in()): ?>
         <a href="<?= $dash_url ?>">Dashboard</a>
-        <a href="<?= APP_URL ?>/pages/patient/profile.php">My Profile</a>
+        <a href="<?= APP_URL ?>/pages/patient/account.php">My Account</a>
         <a href="<?= APP_URL ?>/pages/auth/logout.php" style="color:var(--pco-red)">Sign Out</a>
       <?php else: ?>
         <a href="<?= APP_URL ?>/pages/auth/login.php">Sign In</a>

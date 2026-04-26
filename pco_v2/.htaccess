@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# Compatibility mode:
+# If someone deployed by flattening `/pages/*` into web root, keep old links working.
+# Example: /pages/auth/login.php -> /auth/login.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^pages/(.+)$ /$1 [L,NC,QSA]
+
+# Route legacy `/pages/*.php` links to root `*.php` when flattened.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^pages/([a-z0-9_-]+\.php)$ /$1 [L,NC,QSA]

@@ -16,6 +16,7 @@ $current  = basename($_SERVER['PHP_SELF']);
       <a href="<?= APP_URL ?>/pages/patient/consultations.php"  class="<?= $current==='consultations.php'?'active':'' ?>"><i class="fa-solid fa-clipboard-list"></i> Consultations</a>
       <a href="<?= APP_URL ?>/pages/patient/prescriptions.php"  class="<?= $current==='prescriptions.php'?'active':'' ?>"><i class="fa-solid fa-file-prescription"></i> Prescriptions</a>
       <a href="<?= APP_URL ?>/pages/patient/orders.php"         class="<?= $current==='orders.php'?'active':'' ?>"><i class="fa-solid fa-box-archive"></i> My Orders</a>
+      <a href="<?= APP_URL ?>/pages/patient/account.php"        class="<?= $current==='account.php'?'active':'' ?>"><i class="fa-solid fa-id-card"></i> My Account</a>
       <div class="sep"></div>
       <a href="<?= APP_URL ?>/pages/patient/addresses.php"      class="<?= $current==='addresses.php'?'active':'' ?>"><i class="fa-solid fa-location-dot"></i> Addresses</a>
       <a href="<?= APP_URL ?>/pages/patient/profile.php"        class="<?= $current==='profile.php'?'active':'' ?>"><i class="fa-solid fa-gear"></i> Account Settings</a>

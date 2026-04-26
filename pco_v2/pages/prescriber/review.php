@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'consultation_id'=>$consultId,'patient_id'=>$consult['patient_id']
                 ]);
                 flash_set('success','Consultation approved and prescription '.$rxId.' issued.');
-                redirect('/pages/prescriber/prescription-view.php?id='.$rxId);
+                redirect('/pages/prescriber/prescriptions.php?issued=1&rx_id='.$rxId);
 
             } catch (Throwable $e) {
                 Database::rollback();

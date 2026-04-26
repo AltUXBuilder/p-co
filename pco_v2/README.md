@@ -31,6 +31,7 @@
 - `/pages/patient/checkout.php?rx_id=X`
 - `/pages/patient/addresses.php`
 - `/pages/patient/profile.php`
+- `/pages/patient/account.php`
 
 ### Prescriber Portal
 - `/pages/prescriber/dashboard.php`
@@ -61,9 +62,16 @@
 
 ---
 
+## Deployment Workflow (InfinityFree trial → Hostinger production)
+
+1. Deploy first to **InfinityFree** for trial validation (see `INFINITYFREE.md`).
+2. After sign-off, deploy the same codebase to **Hostinger production**.
+
 ## Deployment (Hostinger)
 
 ### 1. Upload all files to `public_html/`
+Keep the original folder structure (`/pages`, `/includes`, `/assets`, etc.).  
+If you already flattened `/pages` into root, the included `.htaccess` has a compatibility rewrite for `/pages/...` links.
 
 ### 2. Create database
 hPanel → Databases → MySQL Databases → create `prescribeco_db` with a user with full privileges.
@@ -78,6 +86,8 @@ define('DB_PASS',    'your_password');
 define('SECRET_KEY', '64-random-chars-here');
 define('GPHC_NUMBER','your-gphc-number');
 ```
+
+> If the homepage appears mostly blank or unstyled, first confirm `APP_URL` exactly matches the active domain/subdomain and clear CDN/browser cache.
 
 ### 4. Import database
 phpMyAdmin → Import → select `database_full.sql` → Go
@@ -111,7 +121,10 @@ See `INFINITYFREE.md` — key differences:
 ## Admin Guide
 
 ### Conditions
-Admin → Conditions → Add/Edit. Upload image (JPG/PNG/WebP ≤5MB), set gender filter, Font Awesome icon name, sort order, toggle active.
+Admin → Conditions → Add/Edit. Upload image (JPG/PNG/WebP ≤5MB), set gender filter (male/female/all), Font Awesome icon name, sort order, toggle active.
+
+### Brand logo
+Place your company logo at `assets/img/logo.png` and it will be used automatically in the top navigation.
 
 ### Products  
 Admin → Products → Add/Edit. Assign to condition, set SKU, name, brand, strength, form, price, stock, upload image, toggle Rx required.
