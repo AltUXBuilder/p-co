@@ -354,19 +354,18 @@ INSERT INTO `system_settings` (`setting_key`, `setting_value`, `description`) VA
 ('shipping_cost',            '3.99',                               'Standard shipping cost GBP'),
 ('free_shipping_threshold',  '50.00',                              'Free shipping above this amount');
 
--- Conditions (MVP: weight loss + ED as full, others as stubs)
+-- Conditions (prescription pathways for men + women, with shared weight loss journey)
 INSERT INTO `conditions` (`slug`, `name`, `gender`, `description`, `icon`, `is_active`, `sort_order`) VALUES
-('weight-loss-men',      'Weight Loss',           'male',   'Clinically-backed weight management programmes for men.',       'weight-scale', 1, 1),
+('weight-loss',          'Weight Loss',           'all',    'Clinically-backed weight management programmes for men and women.', 'weight-scale', 1, 1),
 ('erectile-dysfunction', 'Erectile Dysfunction',  'male',   'Discreet, effective prescription treatments for ED.',           'heart-pulse',  1, 2),
 ('hair-loss-men',        'Hair Loss',             'male',   'Proven prescription treatments for male pattern baldness.',     'cut',          1, 3),
-('weight-loss-women',    'Weight Loss',           'female', 'Evidence-based weight management tailored for women.',          'weight-scale', 1, 4),
-('digestive-health',     'Digestive Health',      'female', 'Relief from IBS, bloating and gut health concerns.',           'leaf',         1, 5),
-('hair-loss-women',      'Hair Loss',             'female', 'Effective solutions for female hair thinning.',                 'cut',          1, 6),
-('skin-health',          'Skin Health',           'female', 'Prescription skincare for acne, rosacea and more.',            'sparkles',     1, 7);
+('digestive-health',     'Digestive Health',      'female', 'Relief from IBS, bloating and gut health concerns.',           'leaf',         1, 4),
+('hair-loss-women',      'Hair Loss',             'female', 'Effective solutions for female hair thinning.',                 'cut',          1, 5),
+('skin-health',          'Skin Health',           'female', 'Prescription skincare for acne, rosacea and more.',            'sparkles',     1, 6);
 
 -- Products
 INSERT INTO `products` (`condition_id`,`sku`,`name`,`brand`,`description`,`dosage_form`,`strength`,`price`,`requires_prescription`,`stock_qty`,`sort_order`) VALUES
--- Weight loss men (1)
+-- Weight loss (1) shared for men + women
 (1,'WLM-ORL-120','Orlistat','Generic','Prevents dietary fat absorption to support weight loss.','Capsule','120mg',49.99,1,100,1),
 (1,'WLM-SEM-1',  'Semaglutide','Wegovy','Once-weekly GLP-1 injection for chronic weight management.','Injection','1mg/week',199.99,1,50,2),
 -- ED (2)
@@ -377,24 +376,21 @@ INSERT INTO `products` (`condition_id`,`sku`,`name`,`brand`,`description`,`dosag
 -- Hair loss men (3) — stub
 (3,'HLM-FIN-1',  'Finasteride','Generic','DHT blocker for male pattern baldness.','Tablet','1mg',19.99,1,300,1),
 (3,'HLM-MIN-5',  'Minoxidil','Regaine','Topical solution to stimulate hair regrowth.','Solution','5%',22.99,0,250,2),
--- Weight loss women (4)
-(4,'WLW-ORL-120','Orlistat','Generic','Prescription weight-loss capsule for women.','Capsule','120mg',49.99,1,100,1),
-(4,'WLW-SEM-1',  'Semaglutide','Wegovy','Once-weekly injection for sustained weight management.','Injection','1mg/week',199.99,1,50,2),
--- Digestive (5) — stub
-(5,'DH-MEB-135', 'Mebeverine','Colofac','Antispasmodic for IBS and bowel cramping.','Tablet','135mg',14.99,1,400,1),
--- Hair loss women (6) — stub
-(6,'HLW-MIN-2',  'Minoxidil','Regaine','Topical solution for women.','Solution','2%',22.99,0,200,1),
--- Skin health (7) — stub
-(7,'SK-TRE-0025','Tretinoin','Generic','Retinoid cream for acne and skin texture.','Cream','0.025%',29.99,1,200,1);
+-- Digestive (4) — stub
+(4,'DH-MEB-135', 'Mebeverine','Colofac','Antispasmodic for IBS and bowel cramping.','Tablet','135mg',14.99,1,400,1),
+-- Hair loss women (5) — stub
+(5,'HLW-MIN-2',  'Minoxidil','Regaine','Topical solution for women.','Solution','2%',22.99,0,200,1),
+-- Skin health (6) — stub
+(6,'SK-TRE-0025','Tretinoin','Generic','Retinoid cream for acne and skin texture.','Cream','0.025%',29.99,1,200,1);
 
 -- ============================================================
 -- QUESTIONNAIRE TEMPLATES — Full: Weight Loss + ED
 -- Stubs: everything else
 -- ============================================================
 
--- Template 1: Men's Weight Loss (FULL)
+-- Template 1: Weight Loss (FULL)
 INSERT INTO `questionnaire_templates` (`condition_id`,`version`,`title`,`description`) VALUES
-(1, 1, 'Men''s Weight Loss Assessment', 'A short confidential questionnaire to help our prescribers recommend the safest, most effective weight loss treatment for you.');
+(1, 1, 'Weight Loss Assessment', 'A short confidential questionnaire to help our prescribers recommend the safest, most effective weight loss treatment for you.');
 
 INSERT INTO `questionnaire_questions`
   (`template_id`,`question_key`,`question_text`,`question_type`,`options_json`,`is_required`,`step_number`,`sort_order`,`help_text`,`disqualify_if`) VALUES
@@ -435,10 +431,9 @@ INSERT INTO `questionnaire_questions`
 -- Stub templates (minimal — 2 questions each so the system doesn't break)
 INSERT INTO `questionnaire_templates` (`condition_id`,`version`,`title`,`description`) VALUES
 (3, 1, 'Hair Loss Assessment (Men)',     'Coming soon — our clinical team is finalising this questionnaire.'),
-(4, 1, 'Women''s Weight Loss Assessment','Coming soon — our clinical team is finalising this questionnaire.'),
-(5, 1, 'Digestive Health Assessment',    'Coming soon — our clinical team is finalising this questionnaire.'),
-(6, 1, 'Hair Loss Assessment (Women)',   'Coming soon — our clinical team is finalising this questionnaire.'),
-(7, 1, 'Skin Health Assessment',         'Coming soon — our clinical team is finalising this questionnaire.');
+(4, 1, 'Digestive Health Assessment',    'Coming soon — our clinical team is finalising this questionnaire.'),
+(5, 1, 'Hair Loss Assessment (Women)',   'Coming soon — our clinical team is finalising this questionnaire.'),
+(6, 1, 'Skin Health Assessment',         'Coming soon — our clinical team is finalising this questionnaire.');
 
 INSERT INTO `questionnaire_questions` (`template_id`,`question_key`,`question_text`,`question_type`,`is_required`,`step_number`,`sort_order`) VALUES
 (3,'stub_current_medications','Please list any current medications.',   'textarea',1,1,1),
@@ -448,9 +443,7 @@ INSERT INTO `questionnaire_questions` (`template_id`,`question_key`,`question_te
 (5,'stub_current_medications','Please list any current medications.',   'textarea',1,1,1),
 (5,'stub_allergies',          'Do you have any known drug allergies?',  'textarea',1,1,2),
 (6,'stub_current_medications','Please list any current medications.',   'textarea',1,1,1),
-(6,'stub_allergies',          'Do you have any known drug allergies?',  'textarea',1,1,2),
-(7,'stub_current_medications','Please list any current medications.',   'textarea',1,1,1),
-(7,'stub_allergies',          'Do you have any known drug allergies?',  'textarea',1,1,2);
+(6,'stub_allergies',          'Do you have any known drug allergies?',  'textarea',1,1,2);
 
 -- ============================================================
 -- DEFAULT STAFF ACCOUNTS

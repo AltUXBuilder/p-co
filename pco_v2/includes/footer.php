@@ -19,9 +19,9 @@
         <ul class="pco-footer__links">
           <li><a href="<?= APP_URL ?>/pages/conditions.php?gender=male">Men's Health</a></li>
           <li><a href="<?= APP_URL ?>/pages/conditions.php?gender=female">Women's Health</a></li>
-          <li><a href="<?= APP_URL ?>/pages/conditions.php?slug=weight-loss-men">Weight Loss</a></li>
-          <li><a href="<?= APP_URL ?>/pages/conditions.php?slug=erectile-dysfunction">Erectile Dysfunction</a></li>
-          <li><a href="<?= APP_URL ?>/pages/conditions.php?slug=skin-health">Skin Health</a></li>
+          <li><a href="<?= APP_URL ?>/pages/condition.php?slug=weight-loss">Weight Loss</a></li>
+          <li><a href="<?= APP_URL ?>/pages/condition.php?slug=erectile-dysfunction">Erectile Dysfunction</a></li>
+          <li><a href="<?= APP_URL ?>/pages/condition.php?slug=skin-health">Skin Health</a></li>
         </ul>
       </div>
 
