@@ -103,7 +103,7 @@ include APP_PATH . '/includes/header.php';
           </div>
           <div class="cell medium-6">
             <div class="pco-form-group">
-              <label>Slug * <span style="font-size:.75rem;color:var(--pco-grey-500);">(URL-safe, e.g. weight-loss-men)</span></label>
+              <label>Slug * <span style="font-size:.75rem;color:var(--pco-grey-500);">(URL-safe, e.g. weight-loss)</span></label>
               <input type="text" name="slug" value="<?= e($editCond['slug']??'') ?>" required id="condSlug">
             </div>
           </div>

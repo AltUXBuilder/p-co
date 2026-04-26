@@ -4,7 +4,7 @@ require_once __DIR__ . '/../includes/bootstrap.php';
 $gender = clean($_GET['gender'] ?? '');
 if (!in_array($gender,['male','female',''])) $gender = '';
 
-$where  = $gender ? "AND gender='{$gender}'" : "";
+$where  = $gender ? "AND (gender='{$gender}' OR gender='all')" : "";
 $conditions = Database::fetchAll(
     "SELECT c.*, COUNT(p.id) prod_count
      FROM conditions c
