@@ -85,6 +85,8 @@ define('SECRET_KEY', '64-random-chars-here');
 define('GPHC_NUMBER','your-gphc-number');
 ```
 
+> If the homepage appears mostly blank or unstyled, first confirm `APP_URL` exactly matches the active domain/subdomain and clear CDN/browser cache.
+
 ### 4. Import database
 phpMyAdmin → Import → select `database_full.sql` → Go
 

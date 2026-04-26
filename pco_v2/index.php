@@ -12,15 +12,15 @@ include __DIR__ . '/includes/header.php';
 ?>
 
 <!-- ── HERO ─────────────────────────────────────────────────── -->
-<section class="pco-hero">
+<section class="pco-hero" style="background:linear-gradient(150deg,#1A1A2E 0%,#3D2660 55%,#5D4280 100%);color:#fff;">
   <div class="grid-container" style="position:relative;z-index:1;">
     <div class="grid-x">
       <div class="cell large-7 medium-9">
         <div class="pco-hero__eyebrow">
           <i class="fa-solid fa-shield-halved"></i> GPhC-Registered Online Pharmacy
         </div>
-        <h1>Expert prescriptions,<br><em style="font-style:italic;color:var(--pco-lavender);">delivered to your door.</em></h1>
-        <p>Clinically-reviewed consultations by qualified UK prescribers. Discreet, fast and designed around you.</p>
+        <h1 style="color:#fff;">Expert prescriptions,<br><em style="font-style:italic;color:#C4A8E0;">delivered to your door.</em></h1>
+        <p style="color:rgba(255,255,255,.86);">Clinically-reviewed consultations by qualified UK prescribers. Discreet, fast and designed around you.</p>
         <div class="pco-hero__actions">
           <a href="<?= APP_URL ?>/pages/conditions.php?gender=male"   class="pco-btn pco-btn--primary pco-btn--xl">
             <i class="fa-solid fa-mars"></i> Men's Health
